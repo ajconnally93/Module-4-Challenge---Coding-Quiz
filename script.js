@@ -5,7 +5,9 @@
     // <section>Question 1: should you</section>
 // </main>
 var startButton = document.getElementById("startButton");
+console.log(quizQuestions);
 var quizQuestions = document.getElementById("quizQuestions");
+console.log(quizQuestions);
 
 // properly displays 'TEST TEST TEST TEST TEST' to console
 console.log("TEST TEST TEST TEST TEST");
@@ -13,13 +15,15 @@ console.log("TEST TEST TEST TEST TEST");
 // returns 'Null' in console
 console.log(startButton);
 
+// returns 'Null' in console
+console.log(quizQuestions);
+
 function startQuiz () {
     console.log("ABCDEFGHIJKLMNOP");
-    quizQuestions.style.display = block;
+    quizQuestions.style.display = 'block';
 }
 
 // Can call function and 'ABCDEFGHIJKLMNOP' will properly log to console. However, quizQuestions doesn't change to block Display
-startQuiz ();
 
 // Returns error in console: 
 // Uncaught TypeError: Cannot read properties of null (reading 'style')
