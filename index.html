@@ -14,28 +14,45 @@
         <!-- Top Bar section (VHS button, Go Home button, & timer) **ALWAYS STAYS VISIBLE**  -->
         <div>
             <a href="https://www.google.com"><button>View High Scores</button></a>
-            <span>timer: 60 seconds</span>
+            <!-- Insert JS VAR here??? So it can be dynamic -->
+            <span>60</span>
         </div>
 
         <!-- Quiz Introduction and Start button -->
         <div>
-            <span>Welcome to the JavaScript quiz!</span>
-
+            <section>Welcome to the JavaScript quiz!</section>
+            <button id="startButton">Click Here to Begin</button>
         </div>
 
         <!-- Quiz Questions (multiple questions to slide through) -->
-        <main>
-            
+        <main class="quizquestions">
+            <section>Question 1: should you</section>
+            <section>Question 2: why not</section>
+            <section>Question 3: what about</section>
+            <section>Question 4: and this</section>
+            <section>Question 5: blah blah</section>
         </main>
 
         <!-- Finished Quiz! section separate page (includes Submit score button & Go Home button) -->
-        <div>
-
+        <div class="finishedpage">
+            <section>Finished!</section>
+            <form action="/action_page.php">
+                <label for="initials">Type Initials here to submit high score:</label><br>
+                <input type="text" id="initials" name="initials" value="initials"><br>
+                <input type="submit" value="Submit">
+            </form>
         </div>
 
         <!-- High Scores page (includes Go Home button)-->
-        <div>
-
+        <div class="hiscores">
+            <section>High Scores</section>
+            <ol>
+                <li>Name 1</li>
+                <li>Name 2</li>
+                <li>Name 3</li>
+                <li>Name 4</li>
+                <li>Name 5</li>
+            </ol>
         </div>
 
     </div>
