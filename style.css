@@ -2,7 +2,7 @@ div {
     background-color: cyan;
 }
 
-.maincontainer {
+#maincontainer {
     margin: auto;
     width: 90%;
     border: 3px solid green;
@@ -13,10 +13,10 @@ div {
     display: none;
 }
 
-.finishedpage {
+#finishedpage {
     display: none;
 }
 
-.hiscores {
+#hiscores {
     display: none;
 }
