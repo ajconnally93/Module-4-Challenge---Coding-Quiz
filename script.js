@@ -35,12 +35,42 @@ var wholeQuiz = [
 // somehow need to get this quiz to cycle through the questions and evaluate the answers - perhaps with a checkAnswer () function?
 
 function startQuiz () {
-    // figure this out somehow...
+    // Display first question in wholeQuiz array
+    // Once first question in wholeQuiz array is answered, display next question & answer choices
+    document.getElementById("quizQuestion1").innerHTML = Object(wholeQuiz[0].question);
+    document.getElementById("quizChoices1A").innerHTML = Object(wholeQuiz[0].choices[0]);
+    document.getElementById("quizChoices1B").innerHTML = Object(wholeQuiz[0].choices[1]);
+    document.getElementById("quizChoices1C").innerHTML = Object(wholeQuiz[0].choices[2]);
+    document.getElementById("quizChoices1D").innerHTML = Object(wholeQuiz[0].choices[3]);
+    // add event listener for the first set of buttons
+
+    document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
+    document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
+    document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
+    document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
+    document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
+
+    document.getElementById("quizQuestion3").innerHTML = Object(wholeQuiz[2].question);
+    document.getElementById("quizChoices3A").innerHTML = Object(wholeQuiz[2].choices[0]);
+    document.getElementById("quizChoices3B").innerHTML = Object(wholeQuiz[2].choices[1]);
+
+    document.getElementById("quizQuestion4").innerHTML = Object(wholeQuiz[3].question);
+    document.getElementById("quizChoices4A").innerHTML = Object(wholeQuiz[3].choices[0]);
+    document.getElementById("quizChoices4B").innerHTML = Object(wholeQuiz[3].choices[1]);
+
+    document.getElementById("quizQuestion5").innerHTML = Object(wholeQuiz[4].question);
+    document.getElementById("quizChoices5A").innerHTML = Object(wholeQuiz[4].choices[0]);
+    document.getElementById("quizChoices5B").innerHTML = Object(wholeQuiz[4].choices[1]);
+    document.getElementById("quizChoices5C").innerHTML = Object(wholeQuiz[4].choices[2]);
+    document.getElementById("quizChoices5D").innerHTML = Object(wholeQuiz[4].choices[3]);
 }
+
+startQuiz ();
 
 
 function displayPlaceholder () {
     quizQuestions.style.display = 'block';
+    startButton.style.display = 'none';
 }
 
 // Displays the placeholder text - this will need to be changed to somehow begin the quiz...

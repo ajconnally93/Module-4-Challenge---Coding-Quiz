@@ -15,8 +15,8 @@
         <div id="topcontainer">
             <a href="https://www.google.com"><button id="viewhiscores">View High Scores</button></a>
             <span id="welcome">Welcome to the JavaScript quiz!</span>
-            <!-- Timer will need to be dynamic in JS - setInterval - this is placeholder -->
-            <span id="timer">TIMER (DONE IN JS)?</span>
+            <!-- SET TO EMPTY STRING, THEN GETELEMENTBYID WITH SETINTERVAL() -->
+            <span id="timer">TIMER: 60 SECONDS</span>
         </div>
 
         <div id="startButtonDiv">
@@ -25,8 +25,32 @@
 
         <!-- Might need to completely take this out in favor of the quiz questions in JS -->
         <main id="quizQuestions">
-            <p>TODO: HIDE 'WELCOME TEXT', CREATE QUIZ(question,choices,answer) IN JS, PROPERLY HIDE EVERY QUESTION UNTIL IT'S TIME FOR IT TO BE ANSWERED, MAKE ANSWERS A BUTTON WITH ONE BEING THE 'CORRECT' BUTTON
-            </p>
+            <p id="quizQuestion1"></p>
+            <!-- set button classes to =wrongAnswer or =rightAnswer -->
+                <button id="quizChoices1A" class="wrongAnswer"></button>
+                <button id="quizChoices1B" class="rightAnswer"></button>
+                <button id="quizChoices1C" class="wrongAnswer"></button>
+                <button id="quizChoices1D" class="wrongAnswer"></button>
+
+            <p id="quizQuestion2"></p>
+                <button id="quizChoices2A" class="wrongAnswer"></button>
+                <button id="quizChoices2B" class="rightAnswer"></button>
+                <button id="quizChoices2C" class="wrongAnswer"></button>
+                <button id="quizChoices2D" class="wrongAnswer"></button>
+
+            <p id="quizQuestion3"></p>
+                <button id="quizChoices3A" class="rightAnswer"></button>
+                <button id="quizChoices3B" class="wrongAnswer"></button>
+
+            <p id="quizQuestion4"></p>
+                <button id="quizChoices4A" class="rightAnswer"></button>
+                <button id="quizChoices4B" class="wrongAnswer"></button>
+
+            <p id="quizQuestion5"></p>
+                <button id="quizChoices5A" class="rightAnswer"></button>
+                <button id="quizChoices5B" class="wrongAnswer"></button>
+                <button id="quizChoices5C" class="wrongAnswer"></button>
+                <button id="quizChoices5D" class="wrongAnswer"></button>
         </main>
 
         <!-- Finished Quiz! section separate page (includes Submit score button & Go Home button) -->
