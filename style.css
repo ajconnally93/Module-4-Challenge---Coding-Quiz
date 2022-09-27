@@ -9,6 +9,42 @@ div {
     padding: 10px;
 }
 
+
+/* These 4 are the top bar of the page - will always persist no matter what is being shown */
+#topcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+#timer {
+    float: right;
+    font-size: 24px;
+}
+
+#welcome {
+    font-size: 24px;
+    float: center;
+}
+
+#viewhiscores {
+    font-size: 24px;
+}
+
+#startButtonDiv {
+    height: 50px;
+    position: relative;
+}
+
+#startButton {
+    margin-left: 45%;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
 #quizQuestions {
     display: none;
 }

@@ -12,25 +12,21 @@
     <div id="maincontainer">
 
         <!-- Top Bar section (VHS button, Go Home button, & timer) **ALWAYS STAYS VISIBLE**  -->
-        <div>
-            <a href="https://www.google.com"><button>View High Scores</button></a>
-            <!-- Insert JS VAR here??? So it can be dynamic -->
-            <span>60</span>
+        <div id="topcontainer">
+            <a href="https://www.google.com"><button id="viewhiscores">View High Scores</button></a>
+            <span id="welcome">Welcome to the JavaScript quiz!</span>
+            <!-- Timer will need to be dynamic in JS - setInterval - this is placeholder -->
+            <span id="timer">TIMER (DONE IN JS)?</span>
         </div>
 
-        <!-- Quiz Introduction and Start button -->
-        <div>
-            <section>Welcome to the JavaScript quiz!</section>
+        <div id="startButtonDiv">
             <button id="startButton">Click Here to Begin</button>
         </div>
 
-        <!-- Quiz Questions (multiple questions to slide through) -->
+        <!-- Might need to completely take this out in favor of the quiz questions in JS -->
         <main id="quizQuestions">
-            <section>Question 1: should you</section>
-            <section>Question 2: why not</section>
-            <section>Question 3: what about</section>
-            <section>Question 4: and this</section>
-            <section>Question 5: blah blah</section>
+            <p>TODO: HIDE 'WELCOME TEXT', CREATE QUIZ(question,choices,answer) IN JS, PROPERLY HIDE EVERY QUESTION UNTIL IT'S TIME FOR IT TO BE ANSWERED, MAKE ANSWERS A BUTTON WITH ONE BEING THE 'CORRECT' BUTTON
+            </p>
         </main>
 
         <!-- Finished Quiz! section separate page (includes Submit score button & Go Home button) -->
@@ -56,6 +52,7 @@
         </div>
 
     </div>
-<script src="script.js"></script>
+
 </body>
+<script src="script.js"></script>
 </html>

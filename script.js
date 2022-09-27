@@ -1,32 +1,47 @@
-// both are HTML elements, startButton is a Button, quizQuestions is a Main
-
-// <button id="startButton">Click Here to Begin</button>
-// <main id="quizQuestions">
-    // <section>Question 1: should you</section>
-// </main>
 var startButton = document.getElementById("startButton");
-console.log(quizQuestions);
-var quizQuestions = document.getElementById("quizQuestions");
-console.log(quizQuestions);
 
-// properly displays 'TEST TEST TEST TEST TEST' to console
-console.log("TEST TEST TEST TEST TEST");
+// IMPORTANT NOTE: I did not come up with the questions. However, the code and structure is my own.
+var wholeQuiz = [
+    {
+        question: 'Question 1: If we declare a variable, let test = 1, then later, reassign, stating test = 2, what will happen?',
+        choices: ['A. test will equal 1', 'B. test will equal 2', 'C. TypeError', 'D. undefined'],
+        answer: 'B. test will equal 2'
+    }
 
-// returns 'Null' in console
-console.log(startButton);
+    , {
+        question: 'Question 2: If we declare a variable, let test = 1, then later, reassign, stating var test = 2, what will happen if both are in the same scope?',
+        choices: ['A. both variables will be declared', 'B. JavaScript will raise a SyntaxError', 'C. var test will reassign let test', 'D. var test will be ignored as test is already declared'],
+        answer: 'B. JavaScript will raise a SyntaxError'
+    }
 
-// returns 'Null' in console
-console.log(quizQuestions);
+    , {
+        question: 'Question 3: The expression 8 >= 8 evaluates to:',
+        choices: ['A. True', 'B. False'],
+        answer: 'A. True'
+    }
+
+    , {
+        question: 'Question 4: The expression 8 === "8" evaluates to:',
+        choices: ['A. True', 'B. False'],
+        answer: 'B. False'
+    }
+
+    , {
+        question: 'Question 5: What is the main differences between let and const?',
+        choices: ['A. let can be reassigned, const cannot be reassigned', 'B. let cannot be reassigned, const can be reassigned', 'C. let is functional scope, while const is block scope', 'D. let is block scope, while const is functional scope'],
+        answer: 'A. let can be reassigned, const cannot be reassigned'
+    }
+]
+// somehow need to get this quiz to cycle through the questions and evaluate the answers - perhaps with a checkAnswer () function?
 
 function startQuiz () {
-    console.log("ABCDEFGHIJKLMNOP");
+    // figure this out somehow...
+}
+
+
+function displayPlaceholder () {
     quizQuestions.style.display = 'block';
 }
 
-// Can call function and 'ABCDEFGHIJKLMNOP' will properly log to console. However, quizQuestions doesn't change to block Display
-
-// Returns error in console: 
-// Uncaught TypeError: Cannot read properties of null (reading 'style')
-    // at startQuiz (script.js:18:19)
-    // at script.js:22:1
-startButton.addEventListener('click', startQuiz);
+// Displays the placeholder text - this will need to be changed to somehow begin the quiz...
+startButton.addEventListener('click', displayPlaceholder);
