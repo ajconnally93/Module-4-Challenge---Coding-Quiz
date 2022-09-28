@@ -34,14 +34,26 @@ var wholeQuiz = [
 ]
 // somehow need to get this quiz to cycle through the questions and evaluate the answers - perhaps with a checkAnswer () function?
 
+// Will now properly hide buttons
+function displayQuestion2 () {
+    document.getElementById("quizQuestion1").style.display = 'none';
+    document.getElementById('quizChoices1A').style.visibility = 'hidden';
+    document.getElementById('quizChoices1B').style.visibility = 'hidden';
+    document.getElementById('quizChoices1C').style.visibility = 'hidden';
+    document.getElementById('quizChoices1D').style.visibility = 'hidden';
+}
+
 function startQuiz () {
     // Display first question in wholeQuiz array
-    // Once first question in wholeQuiz array is answered, display next question & answer choices
+    // Once first question in wholeQuiz array is answered, display next question & answer choices while hiding first question & answer choices
     document.getElementById("quizQuestion1").innerHTML = Object(wholeQuiz[0].question);
     document.getElementById("quizChoices1A").innerHTML = Object(wholeQuiz[0].choices[0]);
     document.getElementById("quizChoices1B").innerHTML = Object(wholeQuiz[0].choices[1]);
     document.getElementById("quizChoices1C").innerHTML = Object(wholeQuiz[0].choices[2]);
     document.getElementById("quizChoices1D").innerHTML = Object(wholeQuiz[0].choices[3]);
+
+
+    document.getElementById("quizQuestion1").childNodes.addEventListener('click', displayQuestion2);
     // add event listener for the first set of buttons
 
     document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
@@ -73,5 +85,5 @@ function displayPlaceholder () {
     startButton.style.display = 'none';
 }
 
-// Displays the placeholder text - this will need to be changed to somehow begin the quiz...
+// Displays quiz questions all at once now
 startButton.addEventListener('click', displayPlaceholder);
