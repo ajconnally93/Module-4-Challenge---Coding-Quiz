@@ -34,9 +34,12 @@ var wholeQuiz = [
 ]
 // somehow need to get this quiz to cycle through the questions and evaluate the answers - perhaps with a checkAnswer () function?
 
-// Will now properly hide buttons
+// Will now properly hide buttons - NOT FUNCTIONAL WITH QUIZ, BUT TESTED SO I CAN GET BUTTONS TO HIDE
 function displayQuestion2 () {
     document.getElementById("quizQuestion1").style.display = 'none';
+    // SEE IF I CAN USE THE SAME CLASS AS .BUTTONS1 THIS TIME TO HIDE THEIR VISIBILITY ALL AT ONCE...
+    ///////////////
+    ///////////////
     document.getElementById('quizChoices1A').style.visibility = 'hidden';
     document.getElementById('quizChoices1B').style.visibility = 'hidden';
     document.getElementById('quizChoices1C').style.visibility = 'hidden';
@@ -53,7 +56,15 @@ function startQuiz () {
     document.getElementById("quizChoices1D").innerHTML = Object(wholeQuiz[0].choices[3]);
 
 
-    document.getElementById("quizQuestion1").childNodes.addEventListener('click', displayQuestion2);
+    // OKAY SOMEHOW JQUERY WORKS WHEN CLICKING BUTTONS TO HIDE THEM WITH THIS FUNCTION, FIGURE OUT HOW TO EXTRAPOLATE THIS TO GET ACTUAL WORKING CODE LATER //
+    ////////////////////////////////////////////////
+    ///////////////////////////////////////////////
+    $(document).on('click', '.buttons1', displayQuestion2);
+
+    // displayQuestion2 ();
+
+
+    // document.getElementById("quizQuestion1").childNodes.addEventListener('click', displayQuestion2);
     // add event listener for the first set of buttons
 
     document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
