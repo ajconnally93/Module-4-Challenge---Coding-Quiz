@@ -1,5 +1,22 @@
 var startButton = document.getElementById("startButton");
 
+// Jquery function to set the visibility of multiple buttons with the same class
+(function($) {
+    $.fn.invisible = function() {
+        return this.each(function() {
+            $(this).css("visibility", "hidden");
+        });
+    };
+    $.fn.visible = function() {
+        return this.each(function() {
+            $(this).css("visibility", "visible");
+        });
+    };
+}(jQuery));
+
+
+
+
 // IMPORTANT NOTE: I did not come up with the questions. However, the code and structure is my own.
 var wholeQuiz = [
     {
@@ -37,13 +54,32 @@ var wholeQuiz = [
 // Will now properly hide buttons - NOT FUNCTIONAL WITH QUIZ, BUT TESTED SO I CAN GET BUTTONS TO HIDE
 function displayQuestion2 () {
     document.getElementById("quizQuestion1").style.display = 'none';
-    // SEE IF I CAN USE THE SAME CLASS AS .BUTTONS1 THIS TIME TO HIDE THEIR VISIBILITY ALL AT ONCE...
-    ///////////////
-    ///////////////
-    document.getElementById('quizChoices1A').style.visibility = 'hidden';
-    document.getElementById('quizChoices1B').style.visibility = 'hidden';
-    document.getElementById('quizChoices1C').style.visibility = 'hidden';
-    document.getElementById('quizChoices1D').style.visibility = 'hidden';
+    $(".buttons1").invisible();
+
+    document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
+    $(".buttons2").visible();
+
+    // document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
+    // document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
+    // document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
+    // document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
+
+
+    var i = 0;
+    $(".buttons2").each(function() {
+        $(this).html(wholeQuiz[1].choices[i]);
+        i++ ;
+    });
+
+    // EXPLAIN RABBIT HOLE TO GRADER
+    // for (var i = 0; i < wholeQuiz[1].choices.length; i++) {
+    //     // document.getElementsByClassName("buttons2").innerHTML = Object(wholeQuiz[1].choices[i]);
+    //     // var content = Object(wholeQuiz[1].choices[i]);
+    //     // $('.buttons2').text(Object(wholeQuiz[1].choices[i]));
+    //     console.log(i);
+    //     $('.buttons2').html(wholeQuiz[1].choices[i]);
+    // }
+
 }
 
 function startQuiz () {
@@ -55,10 +91,6 @@ function startQuiz () {
     document.getElementById("quizChoices1C").innerHTML = Object(wholeQuiz[0].choices[2]);
     document.getElementById("quizChoices1D").innerHTML = Object(wholeQuiz[0].choices[3]);
 
-
-    // OKAY SOMEHOW JQUERY WORKS WHEN CLICKING BUTTONS TO HIDE THEM WITH THIS FUNCTION, FIGURE OUT HOW TO EXTRAPOLATE THIS TO GET ACTUAL WORKING CODE LATER //
-    ////////////////////////////////////////////////
-    ///////////////////////////////////////////////
     $(document).on('click', '.buttons1', displayQuestion2);
 
     // displayQuestion2 ();
@@ -67,25 +99,24 @@ function startQuiz () {
     // document.getElementById("quizQuestion1").childNodes.addEventListener('click', displayQuestion2);
     // add event listener for the first set of buttons
 
-    document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
-    document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
-    document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
-    document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
-    document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
+    // document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
+    // document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
+    // document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
+    // document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
 
-    document.getElementById("quizQuestion3").innerHTML = Object(wholeQuiz[2].question);
-    document.getElementById("quizChoices3A").innerHTML = Object(wholeQuiz[2].choices[0]);
-    document.getElementById("quizChoices3B").innerHTML = Object(wholeQuiz[2].choices[1]);
+    // document.getElementById("quizQuestion3").innerHTML = Object(wholeQuiz[2].question);
+    // document.getElementById("quizChoices3A").innerHTML = Object(wholeQuiz[2].choices[0]);
+    // document.getElementById("quizChoices3B").innerHTML = Object(wholeQuiz[2].choices[1]);
 
-    document.getElementById("quizQuestion4").innerHTML = Object(wholeQuiz[3].question);
-    document.getElementById("quizChoices4A").innerHTML = Object(wholeQuiz[3].choices[0]);
-    document.getElementById("quizChoices4B").innerHTML = Object(wholeQuiz[3].choices[1]);
+    // document.getElementById("quizQuestion4").innerHTML = Object(wholeQuiz[3].question);
+    // document.getElementById("quizChoices4A").innerHTML = Object(wholeQuiz[3].choices[0]);
+    // document.getElementById("quizChoices4B").innerHTML = Object(wholeQuiz[3].choices[1]);
 
-    document.getElementById("quizQuestion5").innerHTML = Object(wholeQuiz[4].question);
-    document.getElementById("quizChoices5A").innerHTML = Object(wholeQuiz[4].choices[0]);
-    document.getElementById("quizChoices5B").innerHTML = Object(wholeQuiz[4].choices[1]);
-    document.getElementById("quizChoices5C").innerHTML = Object(wholeQuiz[4].choices[2]);
-    document.getElementById("quizChoices5D").innerHTML = Object(wholeQuiz[4].choices[3]);
+    // document.getElementById("quizQuestion5").innerHTML = Object(wholeQuiz[4].question);
+    // document.getElementById("quizChoices5A").innerHTML = Object(wholeQuiz[4].choices[0]);
+    // document.getElementById("quizChoices5B").innerHTML = Object(wholeQuiz[4].choices[1]);
+    // document.getElementById("quizChoices5C").innerHTML = Object(wholeQuiz[4].choices[2]);
+    // document.getElementById("quizChoices5D").innerHTML = Object(wholeQuiz[4].choices[3]);
 }
 
 startQuiz ();

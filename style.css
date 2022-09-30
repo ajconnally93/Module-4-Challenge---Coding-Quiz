@@ -1,5 +1,5 @@
-div {
-    background-color: cyan;
+body {
+    background-color: grey;
 }
 
 #maincontainer {
@@ -7,6 +7,7 @@ div {
     width: 90%;
     border: 3px solid green;
     padding: 10px;
+    background-color: rgb(58, 183, 183);
 }
 
 
@@ -48,6 +49,23 @@ div {
 #quizQuestions {
     display: none;
 }
+
+.buttons2 {
+    visibility: hidden;
+}
+
+.buttons3 {
+    visibility: hidden;
+}
+
+.buttons4 {
+    visibility: hidden;
+}
+
+.buttons5 {
+    visibility: hidden;
+}
+
 
 #finishedpage {
     display: none;
