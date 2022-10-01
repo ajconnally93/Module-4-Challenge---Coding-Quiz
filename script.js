@@ -1,3 +1,17 @@
+// TODOS: CREATE HISCORES PAGE. CREATE WAY TO SAVE HISCORES. CREATE WAY FOR USERS TO ENTER THEIR HISCORES + INITIALS. CREATE DYNAMIC TIMER & TIMER FUNCTIONALITY
+
+// write functions for each TODO and call at the end of 
+
+var time = 60
+
+setInterval(function()
+{
+if (time>0)
+{time --
+    document.getElementById('timer').textContent='TIMER:' + time +' SECONDS'}
+
+}, 1000)
+
 var startButton = document.getElementById("startButton");
 
 // Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
@@ -54,6 +68,7 @@ function displayQuiz () {
 }
 startButton.addEventListener('click', displayQuiz);
 
+// this function is what actually begins the quiz, startQuiz () begins by displaying the 1st question and 1st set of answer choices, the later functions within the event listeners below will be explained as they are defined
 function startQuiz () {
     document.getElementById("quizQuestion1").style.display = 'block';
     document.getElementById("quizQuestion1").innerHTML = Object(wholeQuiz[0].question);
@@ -63,6 +78,13 @@ function startQuiz () {
         $(this).html(wholeQuiz[0].choices[i]);
         i++;
     });
+    document.getElementById('quizQuestions').onclick= function(e){
+        console.log(e.target.innerText)
+    
+        if(e.target.innerText === wholeQuiz[0].answer){
+            time +=15
+        }else{time -=15}
+    }
     $(document).on('click', '.buttons1', displayQuestion2);
     $(document).on('click', '.buttons2', displayQuestion3);
     $(document).on('click', '.buttons3', displayQuestion4);
@@ -83,6 +105,14 @@ function displayQuestion2 () {
         $(this).html(wholeQuiz[1].choices[i]);
         i++;
     });
+
+    document.getElementById('quizQuestions').onclick= function(e){
+        console.log(e.target.innerText)
+    
+        if(e.target.innerText === wholeQuiz[1].answer){
+            time +=15
+        }else{time -=15}
+    }
 }
 
 function displayQuestion3 () {
@@ -95,6 +125,14 @@ function displayQuestion3 () {
         $(this).html(wholeQuiz[2].choices[i]);
         i++;
     });
+
+    document.getElementById('quizQuestions').onclick= function(e){
+        console.log(e.target.innerText)
+    
+        if(e.target.innerText === wholeQuiz[2].answer){
+            time +=15
+        }else{time -=15}
+    }
 }
 
 function displayQuestion4 () {
@@ -107,6 +145,14 @@ function displayQuestion4 () {
         $(this).html(wholeQuiz[3].choices[i]);
         i++;
     });
+
+    document.getElementById('quizQuestions').onclick= function(e){
+        console.log(e.target.innerText)
+    
+        if(e.target.innerText === wholeQuiz[3].answer){
+            time +=15
+        }else{time -=15}
+    }
 }
 
 function displayQuestion5 () {
@@ -119,6 +165,23 @@ function displayQuestion5 () {
         $(this).html(wholeQuiz[4].choices[i]);
         i++;
     });
+
+    document.getElementById('quizQuestions').onclick= function(e){
+        console.log(e.target.innerText)
+    
+        if(e.target.innerText === wholeQuiz[4].answer){
+            time +=15
+        }else{time -=15}
+    }
+
+    // PUT FUNCTIONS HERE TO CAPTURE HISCORES AND USE LOCAL STORAGE
+    // TAKE SCORE 
+
+    // PUT EMPTY INPUT BOX IN HTML FOR HISCORES - SET DISPLAY TO BLOCK AS WELL
+    // STORE EVENT.VALUE AND SCORE IN LOCAL STORAGE
+
+    // ALSO CREATE WAY TO SEE IF TIMER WENT BELOW 15-0 TO GO AHEAD AND DISPLAY A 'YOU LOSE' PAGE THING
+
 }
 
 startQuiz ();

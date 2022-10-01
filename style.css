@@ -46,6 +46,13 @@ body {
 
 #quizQuestions {
     display: none;
+    position: relative;
+    margin-left: 25%;
+}
+
+main > p {
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .buttons2 {
