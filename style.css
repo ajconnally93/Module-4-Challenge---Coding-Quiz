@@ -10,8 +10,6 @@ body {
     background-color: rgb(58, 183, 183);
 }
 
-
-/* These 4 are the top bar of the page - will always persist no matter what is being shown */
 #topcontainer {
     display: flex;
     justify-content: space-between;

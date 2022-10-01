@@ -1,6 +1,6 @@
 var startButton = document.getElementById("startButton");
 
-// Jquery function to set the visibility of multiple buttons with the same class
+// Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
 (function($) {
     $.fn.invisible = function() {
         return this.each(function() {
@@ -14,10 +14,7 @@ var startButton = document.getElementById("startButton");
     };
 }(jQuery));
 
-
-
-
-// IMPORTANT NOTE: I did not come up with the questions. However, the code and structure is my own.
+// IMPORTANT NOTE: I did not come up with the questions&answers. However, the code and structure is my own.
 var wholeQuiz = [
     {
         question: 'Question 1: If we declare a variable, let test = 1, then later, reassign, stating test = 2, what will happen?',
@@ -49,83 +46,79 @@ var wholeQuiz = [
         answer: 'A. let can be reassigned, const cannot be reassigned'
     }
 ]
-// somehow need to get this quiz to cycle through the questions and evaluate the answers - perhaps with a checkAnswer () function?
 
-// Will now properly hide buttons - NOT FUNCTIONAL WITH QUIZ, BUT TESTED SO I CAN GET BUTTONS TO HIDE
-function displayQuestion2 () {
-    document.getElementById("quizQuestion1").style.display = 'none';
-    $(".buttons1").invisible();
-
-    document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
-    $(".buttons2").visible();
-
-    // document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
-    // document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
-    // document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
-    // document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
-
-
-    var i = 0;
-    $(".buttons2").each(function() {
-        $(this).html(wholeQuiz[1].choices[i]);
-        i++ ;
-    });
-
-    // EXPLAIN RABBIT HOLE TO GRADER
-    // for (var i = 0; i < wholeQuiz[1].choices.length; i++) {
-    //     // document.getElementsByClassName("buttons2").innerHTML = Object(wholeQuiz[1].choices[i]);
-    //     // var content = Object(wholeQuiz[1].choices[i]);
-    //     // $('.buttons2').text(Object(wholeQuiz[1].choices[i]));
-    //     console.log(i);
-    //     $('.buttons2').html(wholeQuiz[1].choices[i]);
-    // }
-
-}
-
-function startQuiz () {
-    // Display first question in wholeQuiz array
-    // Once first question in wholeQuiz array is answered, display next question & answer choices while hiding first question & answer choices
-    document.getElementById("quizQuestion1").innerHTML = Object(wholeQuiz[0].question);
-    document.getElementById("quizChoices1A").innerHTML = Object(wholeQuiz[0].choices[0]);
-    document.getElementById("quizChoices1B").innerHTML = Object(wholeQuiz[0].choices[1]);
-    document.getElementById("quizChoices1C").innerHTML = Object(wholeQuiz[0].choices[2]);
-    document.getElementById("quizChoices1D").innerHTML = Object(wholeQuiz[0].choices[3]);
-
-    $(document).on('click', '.buttons1', displayQuestion2);
-
-    // displayQuestion2 ();
-
-
-    // document.getElementById("quizQuestion1").childNodes.addEventListener('click', displayQuestion2);
-    // add event listener for the first set of buttons
-
-    // document.getElementById("quizChoices2A").innerHTML = Object(wholeQuiz[1].choices[0]);
-    // document.getElementById("quizChoices2B").innerHTML = Object(wholeQuiz[1].choices[1]);
-    // document.getElementById("quizChoices2C").innerHTML = Object(wholeQuiz[1].choices[2]);
-    // document.getElementById("quizChoices2D").innerHTML = Object(wholeQuiz[1].choices[3]);
-
-    // document.getElementById("quizQuestion3").innerHTML = Object(wholeQuiz[2].question);
-    // document.getElementById("quizChoices3A").innerHTML = Object(wholeQuiz[2].choices[0]);
-    // document.getElementById("quizChoices3B").innerHTML = Object(wholeQuiz[2].choices[1]);
-
-    // document.getElementById("quizQuestion4").innerHTML = Object(wholeQuiz[3].question);
-    // document.getElementById("quizChoices4A").innerHTML = Object(wholeQuiz[3].choices[0]);
-    // document.getElementById("quizChoices4B").innerHTML = Object(wholeQuiz[3].choices[1]);
-
-    // document.getElementById("quizQuestion5").innerHTML = Object(wholeQuiz[4].question);
-    // document.getElementById("quizChoices5A").innerHTML = Object(wholeQuiz[4].choices[0]);
-    // document.getElementById("quizChoices5B").innerHTML = Object(wholeQuiz[4].choices[1]);
-    // document.getElementById("quizChoices5C").innerHTML = Object(wholeQuiz[4].choices[2]);
-    // document.getElementById("quizChoices5D").innerHTML = Object(wholeQuiz[4].choices[3]);
-}
-
-startQuiz ();
-
-
-function displayPlaceholder () {
+// displayQuiz () will hide the 'Click Here to Begin' button and display the Div container 'quizQuestions' - which will contain all questions as children of said container. However, the questions & answers are hidden by default until the event listener uses the following functions to display them when it is time for the user to answer them.
+function displayQuiz () {
     quizQuestions.style.display = 'block';
     startButton.style.display = 'none';
 }
+startButton.addEventListener('click', displayQuiz);
 
-// Displays quiz questions all at once now
-startButton.addEventListener('click', displayPlaceholder);
+function startQuiz () {
+    document.getElementById("quizQuestion1").style.display = 'block';
+    document.getElementById("quizQuestion1").innerHTML = Object(wholeQuiz[0].question);
+    $(".buttons1").visible();
+    var i = 0;
+    $(".buttons1").each(function() {
+        $(this).html(wholeQuiz[0].choices[i]);
+        i++;
+    });
+    $(document).on('click', '.buttons1', displayQuestion2);
+    $(document).on('click', '.buttons2', displayQuestion3);
+    $(document).on('click', '.buttons3', displayQuestion4);
+    $(document).on('click', '.buttons4', displayQuestion5);
+}
+
+// each displayQuestion# function will follow the same pattern
+function displayQuestion2 () {
+    // First hides the previous question and buttons(answer choices)
+    document.getElementById("quizQuestion1").style.display = 'none';
+    $(".buttons1").invisible();
+    // Then displays the 2nd question and its corresponding answer choices(buttons)
+    document.getElementById("quizQuestion2").innerHTML = Object(wholeQuiz[1].question);
+    $(".buttons2").visible();
+    // Discovered use of .each jquery function to loop through a class of buttons and individually assign each a different value
+    var i = 0;
+    $(".buttons2").each(function() {
+        $(this).html(wholeQuiz[1].choices[i]);
+        i++;
+    });
+}
+
+function displayQuestion3 () {
+    document.getElementById("quizQuestion2").style.display = 'none';
+    $(".buttons2").invisible();
+    document.getElementById("quizQuestion3").innerHTML = Object(wholeQuiz[2].question);
+    $(".buttons3").visible();
+    var i = 0;
+    $(".buttons3").each(function() {
+        $(this).html(wholeQuiz[2].choices[i]);
+        i++;
+    });
+}
+
+function displayQuestion4 () {
+    document.getElementById("quizQuestion3").style.display = 'none';
+    $(".buttons3").invisible();
+    document.getElementById("quizQuestion4").innerHTML = Object(wholeQuiz[3].question);
+    $(".buttons4").visible();
+    var i = 0;
+    $(".buttons4").each(function() {
+        $(this).html(wholeQuiz[3].choices[i]);
+        i++;
+    });
+}
+
+function displayQuestion5 () {
+    document.getElementById("quizQuestion4").style.display = 'none';
+    $(".buttons4").invisible();
+    document.getElementById("quizQuestion5").innerHTML = Object(wholeQuiz[4].question);
+    $(".buttons5").visible();
+    var i = 0;
+    $(".buttons5").each(function() {
+        $(this).html(wholeQuiz[4].choices[i]);
+        i++;
+    });
+}
+
+startQuiz ();
