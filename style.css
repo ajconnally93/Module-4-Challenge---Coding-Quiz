@@ -20,6 +20,10 @@ body {
     font-size: 24px;
 }
 
+#currentScore {
+    font-size: 24px;
+}
+
 #welcome {
     font-size: 24px;
     float: center;

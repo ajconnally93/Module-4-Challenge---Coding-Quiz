@@ -2,15 +2,17 @@
 
 // write functions for each TODO and call at the end of 
 
-var time = 60
+var time = 60;
+var score = 0;
 
 setInterval(function()
 {
-if (time>0)
-{time --
-    document.getElementById('timer').textContent='TIMER:' + time +' SECONDS'}
+if (time>0) {
+    time --;
+    document.getElementById('timer').textContent = 'TIMER:' + time +' SECONDS'};
+}, 1000);
 
-}, 1000)
+document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
 
 var startButton = document.getElementById("startButton");
 
@@ -79,10 +81,10 @@ function startQuiz () {
         i++;
     });
     document.getElementById('quizQuestions').onclick= function(e){
-        console.log(e.target.innerText)
+        console.log(e.target.innerText);
     
         if(e.target.innerText === wholeQuiz[0].answer){
-            time +=15
+            time +=15;
         }else{time -=15}
     }
     $(document).on('click', '.buttons1', displayQuestion2);
@@ -105,13 +107,20 @@ function displayQuestion2 () {
         $(this).html(wholeQuiz[1].choices[i]);
         i++;
     });
-
+    // Adds 15 seconds if answer is correct, subtracts 15 seconds if answer is wrong
+    ////////////////////STILL NEED TO FIX THE CONSOLE LOGS//////////////////////////
+    //////////////////////NOW WORKS, NEED TO FIX OTHER PIECES OF CODE W/ OTHER QUESTIONS////////////////////
     document.getElementById('quizQuestions').onclick= function(e){
         console.log(e.target.innerText)
-    
         if(e.target.innerText === wholeQuiz[1].answer){
-            time +=15
-        }else{time -=15}
+            time +=15;
+            score +=15;
+            console.log("CORRECT " + score);
+        } else {
+            time -=15;
+            score -=15;
+            console.log("INCORRECTINCORRECTINCORRECTINCORRECT " + score);
+        }
     }
 }
 
@@ -130,7 +139,7 @@ function displayQuestion3 () {
         console.log(e.target.innerText)
     
         if(e.target.innerText === wholeQuiz[2].answer){
-            time +=15
+            time +=15;
         }else{time -=15}
     }
 }
@@ -150,7 +159,7 @@ function displayQuestion4 () {
         console.log(e.target.innerText)
     
         if(e.target.innerText === wholeQuiz[3].answer){
-            time +=15
+            time +=15;
         }else{time -=15}
     }
 }
@@ -170,7 +179,7 @@ function displayQuestion5 () {
         console.log(e.target.innerText)
     
         if(e.target.innerText === wholeQuiz[4].answer){
-            time +=15
+            time +=15;
         }else{time -=15}
     }
 
