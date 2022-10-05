@@ -52,29 +52,34 @@
                 <button id="quizChoices5D" class="wrongAnswer buttons5"></button>
         </main>
 
-        <!-- Finished Quiz! section separate page (includes Submit score button & Go Home button) -->
-        <div id="finishedpage">
-            <section>Finished!</section>
-            <form action="/action_page.php">
-                <label for="initials">Type Initials here to submit high score:</label><br>
-                <input type="text" id="initials" name="initials" value="initials"><br>
-                <input type="submit" value="Submit">
+        </div>
+
+        <!-- GAME OVER! page -->
+        <div id="gameOver"></div>
+            <form id="submitScore">
+                <div>
+                  <label for="initials">type initials to submit score:</label>
+                  <input id="initials" type="text" name="initials" />
+                </div>
+                <div>
+                  <input type="submit" value="Send"/>
+                </div>
+                <span>press Send to submit your high score and go to the home page</span>
             </form>
-        </div>
 
-        <!-- High Scores page (includes Go Home button)-->
-        <div id="hiscores">
-            <section>High Scores</section>
-            <ol>
-                <li>Name 1</li>
-                <li>Name 2</li>
-                <li>Name 3</li>
-                <li>Name 4</li>
-                <li>Name 5</li>
-            </ol>
-        </div>
+        <!-- added JS inline with HTML - will allow users to submit their initials into local storage under the 'initials' key -->
+        <script type="text/javascript">
+            window.addEventListener('load', () => {
+                const name = document.querySelector('#initials');
+                const initials = localStorage.getItem('initials') || '';
 
-    </div>
+                name.value = initials;
+
+                name.addEventListener('change', (e) => {
+                    localStorage.setItem('initials', e.target.value);
+                })
+            })
+        </script>
 
 </body>
 <script src="script.js"></script>

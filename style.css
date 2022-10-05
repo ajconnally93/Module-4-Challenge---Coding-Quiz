@@ -29,6 +29,14 @@ body {
     float: center;
 }
 
+#gameOver {
+    font-size: 48px;
+    margin-left: 25%;
+    margin-top: 2%;
+    color: magenta;
+    font-weight: bold;
+}
+
 #viewhiscores {
     font-size: 24px;
 }
@@ -76,10 +84,6 @@ main > p {
 }
 
 
-#finishedpage {
-    display: none;
-}
-
-#hiscores {
-    display: none;
+#submitScore {
+    visibility: hidden;
 }
