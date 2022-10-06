@@ -6,6 +6,13 @@ var startButton = document.getElementById("startButton");
 
 document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
 
+const test = document.querySelector('#initials');
+const initials = localStorage.getItem('initials') || '';
+test.value = initials;
+test.addEventListener('change', (e) => {
+localStorage.setItem('initials', e.target.value);
+})
+
 // Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
 (function($) {
     $.fn.invisible = function() {
@@ -209,9 +216,12 @@ function displayQuestion5 () {
             document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
         }
     }
-
-    // PUT EMPTY INPUT BOX IN HTML FOR HISCORES - SET DISPLAY TO BLOCK AS WELL
-
 }
 
 startQuiz ();
+
+// NEED TO GRAB initials AND userScore FROM LOCALSTORAGE AND DISPLAY THEM ON AN HTML PAGE as 'High Scores'
+function showHighScores () {
+    document.getElementById('userInitials').textContent = "GET initials FROM LOCAL STORAGE";
+    document.getElementById('highScores').textContent = "GET userScore FROM LOCAL STORAGE";
+}

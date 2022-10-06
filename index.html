@@ -68,7 +68,7 @@
             </form>
 
         <!-- added JS inline with HTML - will allow users to submit their initials into local storage under the 'initials' key -->
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
             window.addEventListener('load', () => {
                 const name = document.querySelector('#initials');
                 const initials = localStorage.getItem('initials') || '';
@@ -79,7 +79,10 @@
                     localStorage.setItem('initials', e.target.value);
                 })
             })
-        </script>
+        </script> -->
+
+        <div id="userInitials"></div>
+        <div id="highScores"></div>
 
 </body>
 <script src="script.js"></script>
