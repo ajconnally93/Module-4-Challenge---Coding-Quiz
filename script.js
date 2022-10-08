@@ -6,12 +6,22 @@ var startButton = document.getElementById("startButton");
 
 document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
 
-const test = document.querySelector('#initials');
-const initials = localStorage.getItem('initials') || '';
-test.value = initials;
-test.addEventListener('change', (e) => {
-localStorage.setItem('initials', e.target.value);
-})
+function takeInitials () {
+    window.addEventListener('load', () => {
+        const name = document.querySelector('#initials');
+        const initials = localStorage.getItem('initials') || '';
+
+        name.value = initials;
+
+        name.addEventListener('change', (e) => {
+            localStorage.setItem('initials', e.target.value);
+        })
+    })
+    // TRYING TO APPEND both the initials and userScore from Local Storage into the 'highScoresList' empty array
+    // Then I want to make the textContent of the 'highScores' DIV (from HTML) to be the highScoresList array
+    // highScoresList.append(initials, userScore);
+    // document.getElementById("highScores").textContent(highScoresList);
+}
 
 // Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
 (function($) {
@@ -77,8 +87,6 @@ function displayQuiz () {
             // window.localStorage.getItem('userScore');
         }
     }, 1000);
-
-    console.log("TESTING CONSOLE LOG UPON PRESSING DISPLAY QUIZ");
 }
 startButton.addEventListener('click', displayQuiz);
 
@@ -220,8 +228,50 @@ function displayQuestion5 () {
 
 startQuiz ();
 
-// NEED TO GRAB initials AND userScore FROM LOCALSTORAGE AND DISPLAY THEM ON AN HTML PAGE as 'High Scores'
-function showHighScores () {
-    document.getElementById('userInitials').textContent = "GET initials FROM LOCAL STORAGE";
-    document.getElementById('highScores').textContent = "GET userScore FROM LOCAL STORAGE";
+takeInitials ();
+
+
+
+// function getHighScores () {
+//     if (highScoresList != []) {
+//         highScoresList.push(localStorage.getItem("initials"));
+//         console.log(highScoresList);
+//         document.getElementById("highScores").innerHTML = highScoresList;
+//     } else {
+//         var highScoresList = [];
+//     }
+// }
+
+// KEEPS RE-ITERATING OVER ITSELF TO EQUAL AN EMPTY ARRAY
+var highScoresList = [];
+
+// if (!highScoresList) {
+//     var highScoresList = [];
+// }
+
+function getHighScores () {
+
+    // create new element
+    // push into new element that was created??
+    // var highScoresLi = document.createElement("li");
+    // somehow put into the other element ID? (the div that i want to make an OL)
+    
+    // node = document.createTextNode(localStorage.getItem("initials"));
+    // const highScoreLi = document.createElement("li").appendChild(node);
+    // document.getElementById("highScores").appendChild(highScoreLi);
+
+    // document.getElementById("highScores").appendChild(highScoresLi);
+    // document.getElementById("highScores").appendChild(document.createElement("li"));
+    // document.getElementById("highScores").appendChild.document.createElement("li").appendChild(node);
+
+    console.log(highScoresList);
+
+    // document.getElementById("highScores").innerHTML += highScoresList;
+    // document.getElementById("highScores").appendChild(highScoresList);
 }
+
+getHighScores ();
+
+// highScoresList.push(localStorage.getItem("initials"));
+// highScoresList = highScoresList.concat([localStorage.getItem("initials")]);
+// highScoresList.splice(highScoresList.length, 0, localStorage.getItem("initials"));
