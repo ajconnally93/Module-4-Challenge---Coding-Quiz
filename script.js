@@ -74,7 +74,8 @@ var wholeQuiz = [
 function displayQuiz () {
     quizQuestions.style.display = 'block';
     startButton.style.display = 'none';
-    setInterval(function() {
+
+    var timerSet = setInterval(function() {
         if (time>0) {
             time --;
             document.getElementById('timer').textContent = 'TIMER:' + time +' SECONDS'}
@@ -83,11 +84,23 @@ function displayQuiz () {
             document.getElementById("maincontainer").style.display = 'none';
             $("#submitScore").visible();
             // localStorage userScore now always stores the correct score of the user's quiz result
-            window.localStorage.setItem('userScore', JSON.stringify(score));
+            saveScore ();
             // window.localStorage.getItem('userScore');
+            clearInterval(timerSet);
         }
     }, 1000);
 }
+
+function saveScore () {
+    
+    var highScoresList = [];
+    var score2 = localStorage.getItem("userScore");
+    highScoresList.push(JSON.parse(score2));
+    highScoresList.push(score);
+    window.localStorage.setItem('userScore', JSON.stringify(highScoresList));
+
+}
+
 startButton.addEventListener('click', displayQuiz);
 
 // this function is what actually begins the quiz, startQuiz () begins by displaying the 1st question and 1st set of answer choices, the later functions within the event listeners below will be explained as they are defined
@@ -243,7 +256,7 @@ takeInitials ();
 // }
 
 // KEEPS RE-ITERATING OVER ITSELF TO EQUAL AN EMPTY ARRAY
-var highScoresList = [];
+// var highScoresList = [];
 
 // if (!highScoresList) {
 //     var highScoresList = [];
