@@ -6,22 +6,24 @@ var startButton = document.getElementById("startButton");
 
 document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
 
-function takeInitials () {
-    window.addEventListener('load', () => {
-        const name = document.querySelector('#initials');
-        const initials = localStorage.getItem('initials') || '';
 
-        name.value = initials;
 
-        name.addEventListener('change', (e) => {
-            localStorage.setItem('initials', e.target.value);
-        })
-    })
-    // TRYING TO APPEND both the initials and userScore from Local Storage into the 'highScoresList' empty array
-    // Then I want to make the textContent of the 'highScores' DIV (from HTML) to be the highScoresList array
-    // highScoresList.append(initials, userScore);
-    // document.getElementById("highScores").textContent(highScoresList);
-}
+// function takeInitials () {
+//     window.addEventListener('load', () => {
+//         const name = document.querySelector('#initials');
+//         const initials = localStorage.getItem('initials') || '';
+
+//         name.value = initials;
+
+//         name.addEventListener('change', (e) => {
+//             localStorage.setItem('initials', e.target.value);
+//         })
+//     })
+//     // TRYING TO APPEND both the initials and userScore from Local Storage into the 'highScoresList' empty array
+//     // Then I want to make the textContent of the 'highScores' DIV (from HTML) to be the highScoresList array
+//     // highScoresList.append(initials, userScore);
+//     // document.getElementById("highScores").textContent(highScoresList);
+// }
 
 // Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
 (function($) {
@@ -85,20 +87,38 @@ function displayQuiz () {
             $("#submitScore").visible();
             // localStorage userScore now always stores the correct score of the user's quiz result
             saveScore ();
-            // window.localStorage.getItem('userScore');
+            // takeInitials ();
+            // saveInitials ();
             clearInterval(timerSet);
         }
     }, 1000);
 }
 
+function takeInitials () {
+    window.addEventListener('load', () => {
+        const name = document.querySelector('#initials');
+        const initials = localStorage.getItem('initials') || '';
+        name.value = initials;
+        name.addEventListener('change', (e) => {
+            localStorage.setItem('initials', e.target.value);
+        })
+
+        // same as function saveScore () -- but for initials
+        var initialsList = [];
+        var initials2 = localStorage.getItem("initials");
+        initialsList.push(JSON.parse(initials2));
+        initialsList.push(initials);
+        window.localStorage.setItem('initials', JSON.stringify(initialsList));
+
+    })
+}
+
 function saveScore () {
-    
     var highScoresList = [];
     var score2 = localStorage.getItem("userScore");
     highScoresList.push(JSON.parse(score2));
     highScoresList.push(score);
     window.localStorage.setItem('userScore', JSON.stringify(highScoresList));
-
 }
 
 startButton.addEventListener('click', displayQuiz);
@@ -242,49 +262,3 @@ function displayQuestion5 () {
 startQuiz ();
 
 takeInitials ();
-
-
-
-// function getHighScores () {
-//     if (highScoresList != []) {
-//         highScoresList.push(localStorage.getItem("initials"));
-//         console.log(highScoresList);
-//         document.getElementById("highScores").innerHTML = highScoresList;
-//     } else {
-//         var highScoresList = [];
-//     }
-// }
-
-// KEEPS RE-ITERATING OVER ITSELF TO EQUAL AN EMPTY ARRAY
-// var highScoresList = [];
-
-// if (!highScoresList) {
-//     var highScoresList = [];
-// }
-
-function getHighScores () {
-
-    // create new element
-    // push into new element that was created??
-    // var highScoresLi = document.createElement("li");
-    // somehow put into the other element ID? (the div that i want to make an OL)
-    
-    // node = document.createTextNode(localStorage.getItem("initials"));
-    // const highScoreLi = document.createElement("li").appendChild(node);
-    // document.getElementById("highScores").appendChild(highScoreLi);
-
-    // document.getElementById("highScores").appendChild(highScoresLi);
-    // document.getElementById("highScores").appendChild(document.createElement("li"));
-    // document.getElementById("highScores").appendChild.document.createElement("li").appendChild(node);
-
-    console.log(highScoresList);
-
-    // document.getElementById("highScores").innerHTML += highScoresList;
-    // document.getElementById("highScores").appendChild(highScoresList);
-}
-
-getHighScores ();
-
-// highScoresList.push(localStorage.getItem("initials"));
-// highScoresList = highScoresList.concat([localStorage.getItem("initials")]);
-// highScoresList.splice(highScoresList.length, 0, localStorage.getItem("initials"));
