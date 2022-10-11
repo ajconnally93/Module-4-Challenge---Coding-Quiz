@@ -85,16 +85,43 @@ function displayQuiz () {
             document.getElementById('gameOver').textContent = 'GAME OVER! Your score was ' + score;
             document.getElementById("maincontainer").style.display = 'none';
             $("#submitScore").visible();
-            // localStorage userScore now always stores the correct score of the user's quiz result
-            saveScore ();
-            // takeInitials ();
-            // saveInitials ();
+            // saveScore ();
+            setScore ();
+            // This is where setScore/renderScore will need to be called?
             clearInterval(timerSet);
         }
     }, 1000);
 }
 
-function takeInitials () {
+// so basically setScoreFunction will be a function to set both the score and the initials to localStorage
+// and getScoreFunction will be to get both the score and initials from localStorage, and set them to <li>'s with a loop
+
+// • make 2 functions, one for setting the score and one for rendering the score into the page
+
+// • inside the score function, create an empty array, get the name ( or initials ), and score from the variable you made for timeleft, set those inside an object and push that into the array that you've just created. then you can setItem the array into the localStorage.
+
+// • in your 2nd function, get the items from the localSTorage, check to make sure it's not empty, then you can do a for loop to set <li>'s with the name and score together, will look something like the picture i've attached down below
+
+// • finally append the li's into the ul in the html
+
+function renderScore () {
+    var initialsSet = localStorage.getItem("initials");
+    var scoreSet = localStorage.getItem("userScore");
+    var finalRender = initialsSet + ': ' + scoreSet;
+
+    var finalRenderEl = document.createElement('li');
+    finalRenderEl.setAttribute('id', 'renderId');
+    finalRenderEl.textContent = finalRender;
+
+    var highScoresEl = document.getElementById("highScores");
+    highScoresEl.appendChild(finalRenderEl);
+}
+
+function setScore () {
+    window.localStorage.setItem("userScore", score);
+}
+
+function setInitials () {
     window.addEventListener('load', () => {
         const name = document.querySelector('#initials');
         const initials = localStorage.getItem('initials') || '';
@@ -102,24 +129,35 @@ function takeInitials () {
         name.addEventListener('change', (e) => {
             localStorage.setItem('initials', e.target.value);
         })
-
-        // same as function saveScore () -- but for initials
-        var initialsList = [];
-        var initials2 = localStorage.getItem("initials");
-        initialsList.push(JSON.parse(initials2));
-        initialsList.push(initials);
-        window.localStorage.setItem('initials', JSON.stringify(initialsList));
-
     })
 }
 
-function saveScore () {
-    var highScoresList = [];
-    var score2 = localStorage.getItem("userScore");
-    highScoresList.push(JSON.parse(score2));
-    highScoresList.push(score);
-    window.localStorage.setItem('userScore', JSON.stringify(highScoresList));
-}
+// function takeInitials () {
+//     window.addEventListener('load', () => {
+//         const name = document.querySelector('#initials');
+//         const initials = localStorage.getItem('initials') || '';
+//         name.value = initials;
+//         name.addEventListener('change', (e) => {
+//             localStorage.setItem('initials', e.target.value);
+//         })
+
+//         // same as function saveScore () -- but for initials
+//         var initialsList = [];
+//         var initials2 = localStorage.getItem("initials");
+//         initialsList.push(JSON.parse(initials2));
+//         initialsList.push(initials);
+//         window.localStorage.setItem('initials', JSON.stringify(initialsList));
+
+//     })
+// }
+
+// function saveScore () {
+//     var highScoresList = [];
+//     var score2 = localStorage.getItem("userScore");
+//     highScoresList.push(JSON.parse(score2));
+//     highScoresList.push(score);
+//     window.localStorage.setItem('userScore', JSON.stringify(highScoresList));
+// }
 
 startButton.addEventListener('click', displayQuiz);
 
@@ -261,4 +299,12 @@ function displayQuestion5 () {
 
 startQuiz ();
 
-takeInitials ();
+setInitials ();
+
+renderScore ();
+
+// now call RENDER functions here!!!!!!!!!!!
+
+// setScore ();
+
+// takeInitials ();
