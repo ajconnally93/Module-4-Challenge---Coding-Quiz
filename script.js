@@ -6,25 +6,6 @@ var startButton = document.getElementById("startButton");
 
 document.getElementById('currentScore').textContent = 'CURRENT SCORE: ' + score;
 
-
-
-// function takeInitials () {
-//     window.addEventListener('load', () => {
-//         const name = document.querySelector('#initials');
-//         const initials = localStorage.getItem('initials') || '';
-
-//         name.value = initials;
-
-//         name.addEventListener('change', (e) => {
-//             localStorage.setItem('initials', e.target.value);
-//         })
-//     })
-//     // TRYING TO APPEND both the initials and userScore from Local Storage into the 'highScoresList' empty array
-//     // Then I want to make the textContent of the 'highScores' DIV (from HTML) to be the highScoresList array
-//     // highScoresList.append(initials, userScore);
-//     // document.getElementById("highScores").textContent(highScoresList);
-// }
-
 // Discovered a Jquery function which will allow me to set the visibility of multiple buttons with the same class through another jquery function ending in either .visible(); or .invisible();
 (function($) {
     $.fn.invisible = function() {
@@ -85,48 +66,11 @@ function displayQuiz () {
             document.getElementById('gameOver').textContent = 'GAME OVER! Your score was ' + score;
             document.getElementById("maincontainer").style.display = 'none';
             $("#submitScore").visible();
-            // saveScore ();
             setScore ();
-            // This is where setScore/renderScore will need to be called?
             clearInterval(timerSet);
         }
     }, 1000);
 }
-
-// so basically setScoreFunction will be a function to set both the score and the initials to localStorage
-// and getScoreFunction will be to get both the score and initials from localStorage, and set them to <li>'s with a loop
-
-// • make 2 functions, one for setting the score and one for rendering the score into the page
-
-// • inside the score function, create an empty array, get the name ( or initials ), and score from the variable you made for timeleft, set those inside an object and push that into the array that you've just created. then you can setItem the array into the localStorage.
-
-// • in your 2nd function, get the items from the localSTorage, check to make sure it's not empty, then you can do a for loop to set <li>'s with the name and score together, will look something like the picture i've attached down below
-
-// • finally append the li's into the ul in the html
-
-// SET EMPTY ARRAY HERE THEN CALL IT BY LENGTH
-// highScoresList = [];
-function renderScore () {
-    highScoresList = [];
-    ///////////////////////////////////////////////////////////////////
-    var olEl = document.getElementById('highScores');
-    // Definitely has something to do with how olEl.length is called
-    for (var i = 0; i < highScoresList.length; i += 1) {
-        var liTag = document.createElement('li');
-
-        // var olEl = document.getElementById('highScores');
-
-        var initialsSet = localStorage.getItem("initials");
-        var scoreSet = localStorage.getItem("userScore");
-
-        // liTag.textContent = olEl[i].initials + ' - ' + olEl[i].score;
-        liTag.textContent = initialsSet + ': ' + scoreSet;
-
-        // var olEl = document.getElementById('highScores');
-        olEl.appendChild(liTag);
-    }
-}
-    ///////////////////////////////////////////////////////////////////
 
 function setScore () {
     window.localStorage.setItem("userScore", score);
@@ -143,32 +87,50 @@ function setInitials () {
     })
 }
 
-// function takeInitials () {
-//     window.addEventListener('load', () => {
-//         const name = document.querySelector('#initials');
-//         const initials = localStorage.getItem('initials') || '';
-//         name.value = initials;
-//         name.addEventListener('change', (e) => {
-//             localStorage.setItem('initials', e.target.value);
-//         })
 
-//         // same as function saveScore () -- but for initials
-//         var initialsList = [];
-//         var initials2 = localStorage.getItem("initials");
-//         initialsList.push(JSON.parse(initials2));
-//         initialsList.push(initials);
-//         window.localStorage.setItem('initials', JSON.stringify(initialsList));
 
-//     })
-// }
+function renderScore () {
+    var wholeSet = {
+        initials1: localStorage.getItem("initials"),
+        score1: localStorage.getItem("userScore"),
+    }
 
-// function saveScore () {
-//     var highScoresList = [];
-//     var score2 = localStorage.getItem("userScore");
-//     highScoresList.push(JSON.parse(score2));
-//     highScoresList.push(score);
-//     window.localStorage.setItem('userScore', JSON.stringify(highScoresList));
-// }
+    // Perhaps need a different item's length for the loop, as wholeSet.length is undefined
+    for (var i = 0; i < wholeSet.length; i++) {
+        var olEl = document.getElementById('highScores');
+        var liTag = document.createElement('li');
+
+        // need different code here, as wholeSet[i].initials1 is undefined
+        // however, wholeSet.initials1 will properly log into the console
+        liTag.textContent = wholeSet[i].initials1 + ': ' + wholeSet[i].score1;
+
+        olEl.appendChild(liTag);
+    }
+
+    // console logging wholeSet object works
+    // console.log(wholeSet);
+
+    // wholeSet.length is undefined
+    // console.log(wholeSet.length);
+
+    // wholeSet.values is also undefined
+    // console.log(wholeSet.values);
+
+    // wholeSet[i].initials1 is undefined
+    // console.log(wholeSet[i].initials1);
+
+    // THIS WORKS
+    // console.log(wholeSet.initials1);
+
+    // THIS WORKS
+    // console.log(Object.values(wholeSet));
+
+    // THIS WORKS - LOGS EACH INDIVIDUAL CHARACTER IN THE INITIALS AS SEPARATE STRING IN AN ARRAY
+    // console.log(Object.values(wholeSet.initials1));
+
+// AT THIS POINT, PRIORITY NEEDS TO BE FIGURING OUT PROPER WAY TO GET LENGTH FOR THE FOR LOOP
+
+}
 
 startButton.addEventListener('click', displayQuiz);
 
@@ -313,9 +275,3 @@ startQuiz ();
 setInitials ();
 
 renderScore ();
-
-// now call RENDER functions here!!!!!!!!!!!
-
-// setScore ();
-
-// takeInitials ();
