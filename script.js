@@ -104,18 +104,29 @@ function displayQuiz () {
 
 // • finally append the li's into the ul in the html
 
+// SET EMPTY ARRAY HERE THEN CALL IT BY LENGTH
+// highScoresList = [];
 function renderScore () {
-    var initialsSet = localStorage.getItem("initials");
-    var scoreSet = localStorage.getItem("userScore");
-    var finalRender = initialsSet + ': ' + scoreSet;
+    highScoresList = [];
+    ///////////////////////////////////////////////////////////////////
+    var olEl = document.getElementById('highScores');
+    // Definitely has something to do with how olEl.length is called
+    for (var i = 0; i < highScoresList.length; i += 1) {
+        var liTag = document.createElement('li');
 
-    var finalRenderEl = document.createElement('li');
-    finalRenderEl.setAttribute('id', 'renderId');
-    finalRenderEl.textContent = finalRender;
+        // var olEl = document.getElementById('highScores');
 
-    var highScoresEl = document.getElementById("highScores");
-    highScoresEl.appendChild(finalRenderEl);
+        var initialsSet = localStorage.getItem("initials");
+        var scoreSet = localStorage.getItem("userScore");
+
+        // liTag.textContent = olEl[i].initials + ' - ' + olEl[i].score;
+        liTag.textContent = initialsSet + ': ' + scoreSet;
+
+        // var olEl = document.getElementById('highScores');
+        olEl.appendChild(liTag);
+    }
 }
+    ///////////////////////////////////////////////////////////////////
 
 function setScore () {
     window.localStorage.setItem("userScore", score);
