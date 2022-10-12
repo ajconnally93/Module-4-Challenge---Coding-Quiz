@@ -76,53 +76,24 @@ function displayQuiz () {
 //     console.log(highScoresArray);
 //     highScoresArray = JSON.parse(localStorage.getItem("userScore"));
 // }
-
-var highScoresArray = JSON.parse(localStorage.getItem("userScore"));
-
-// this console Log IS working - except it only ever displays one single userScore
-console.log(highScoresArray);
-
+var userScore = localStorage.getItem("userScore");
+var highScoresArray = userScore?JSON.parse(userScore):[];
 function setScore () {
-    if (highScoresArray == null || undefined) {
-        var highScoresArray = [];
-        highScoresArray.push(score);
-        localStorage.setItem("userScore", JSON.stringify(highScoresArray));
-
-        // SPREAD OPERATOR SOMEWHERE
-
-        // maybe comment this out, because it's called at beginning of code?
-        highScoresArray = JSON.parse(localStorage.getItem("userScore"));
-
-        // console.log(highScoresArray);
-
-    // ELSE STATEMENT NOT RUNNING
-    } else {
-        // now there should be *2* items in highScoresArray
-        highScoresArray.push(score);
-        // now this should push *2* items into userScore
-        localStorage.setItem("userScore", JSON.stringify(highScoresArray));
-
-        // highScoresArray = JSON.parse(localStorage.getItem("userScore"));
-        console.log(highScoresArray);
-        console.log("TEST STRING TEST STRING TEST STRING");
-    }
+    highScoresArray.push(score);
+    localStorage.setItem("userScore", JSON.stringify(highScoresArray));
+    userScore = localStorage.getItem("userScore");
+    highScoresArray = JSON.parse(userScore);
+    console.log(highScoresArray);
+    console.log("TEST STRING TEST STRING TEST STRING");
 }
 
 
-// function setScore () {
-//     window.localStorage.setItem("userScore", score);
-// }
+var initials = localStorage.getItem("initials");
+var initialsArray = initials?JSON.parse(initials):[];
+function setInitials () {
+    
+}
 
-// function setInitials () {
-//     window.addEventListener('load', () => {
-//         const name = document.querySelector('#initials');
-//         const initials = localStorage.getItem('initials') || '';
-//         name.value = initials;
-//         name.addEventListener('change', (e) => {
-//             localStorage.setItem('initials', e.target.value);
-//         })
-//     })
-// }
 
 
 
