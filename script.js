@@ -1,5 +1,3 @@
-// TODOS: CREATE HISCORES PAGE. CREATE WAY TO SAVE HISCORES. CREATE WAY FOR USERS TO ENTER THEIR HISCORES + INITIALS.
-
 var time = 30;
 var score = 0;
 var startButton = document.getElementById("startButton");
@@ -72,20 +70,59 @@ function displayQuiz () {
     }, 1000);
 }
 
+// function setScore () {
+//     highScoresArray.push(score);
+//     localStorage.setItem("userScore", JSON.stringify(highScoresArray));
+//     console.log(highScoresArray);
+//     highScoresArray = JSON.parse(localStorage.getItem("userScore"));
+// }
+
+var highScoresArray = JSON.parse(localStorage.getItem("userScore"));
+
+// this console Log IS working - except it only ever displays one single userScore
+console.log(highScoresArray);
+
 function setScore () {
-    window.localStorage.setItem("userScore", score);
+    if (highScoresArray == null || undefined) {
+        var highScoresArray = [];
+        highScoresArray.push(score);
+        localStorage.setItem("userScore", JSON.stringify(highScoresArray));
+
+        // SPREAD OPERATOR SOMEWHERE
+
+        // maybe comment this out, because it's called at beginning of code?
+        highScoresArray = JSON.parse(localStorage.getItem("userScore"));
+
+        // console.log(highScoresArray);
+
+    // ELSE STATEMENT NOT RUNNING
+    } else {
+        // now there should be *2* items in highScoresArray
+        highScoresArray.push(score);
+        // now this should push *2* items into userScore
+        localStorage.setItem("userScore", JSON.stringify(highScoresArray));
+
+        // highScoresArray = JSON.parse(localStorage.getItem("userScore"));
+        console.log(highScoresArray);
+        console.log("TEST STRING TEST STRING TEST STRING");
+    }
 }
 
-function setInitials () {
-    window.addEventListener('load', () => {
-        const name = document.querySelector('#initials');
-        const initials = localStorage.getItem('initials') || '';
-        name.value = initials;
-        name.addEventListener('change', (e) => {
-            localStorage.setItem('initials', e.target.value);
-        })
-    })
-}
+
+// function setScore () {
+//     window.localStorage.setItem("userScore", score);
+// }
+
+// function setInitials () {
+//     window.addEventListener('load', () => {
+//         const name = document.querySelector('#initials');
+//         const initials = localStorage.getItem('initials') || '';
+//         name.value = initials;
+//         name.addEventListener('change', (e) => {
+//             localStorage.setItem('initials', e.target.value);
+//         })
+//     })
+// }
 
 
 
@@ -272,6 +309,6 @@ function displayQuestion5 () {
 
 startQuiz ();
 
-setInitials ();
+// setInitials ();
 
 renderScore ();
