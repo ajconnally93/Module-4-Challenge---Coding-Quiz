@@ -59,28 +59,13 @@
             <form id="submitScore">
                 <div>
                   <label for="initials">type initials to submit score:</label>
-                  <input id="initials" type="text" name="initials" />
+                  <input id="initials" type="text" name="initials"/>
                 </div>
                 <div>
                   <input type="submit" value="Send"/>
                 </div>
                 <span>press Send to submit your high score and go to the home page</span>
             </form>
-
-        <!-- added JS inline with HTML - will allow users to submit their initials into local storage under the 'initials' key -->
-        <!-- Put into actual JS file but leaving here in case I need original -->
-        <!-- <script type="text/javascript">
-            window.addEventListener('load', () => {
-                const name = document.querySelector('#initials');
-                const initials = localStorage.getItem('initials') || '';
-
-                name.value = initials;
-
-                name.addEventListener('change', (e) => {
-                    localStorage.setItem('initials', e.target.value);
-                })
-            })
-        </script> -->
 
         <ul id="highScores">
             

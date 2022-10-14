@@ -65,17 +65,12 @@ function displayQuiz () {
             document.getElementById("maincontainer").style.display = 'none';
             $("#submitScore").visible();
             setScore ();
+            // localStorage.setItem("initials", initialsSet.value);
             clearInterval(timerSet);
         }
     }, 1000);
 }
 
-// function setScore () {
-//     highScoresArray.push(score);
-//     localStorage.setItem("userScore", JSON.stringify(highScoresArray));
-//     console.log(highScoresArray);
-//     highScoresArray = JSON.parse(localStorage.getItem("userScore"));
-// }
 var userScore = localStorage.getItem("userScore");
 var highScoresArray = userScore?JSON.parse(userScore):[];
 function setScore () {
@@ -83,62 +78,83 @@ function setScore () {
     localStorage.setItem("userScore", JSON.stringify(highScoresArray));
     userScore = localStorage.getItem("userScore");
     highScoresArray = JSON.parse(userScore);
-    console.log(highScoresArray);
-    console.log("TEST STRING TEST STRING TEST STRING");
+
+    // console.log(highScoresArray);
 }
 
+
+// need 2 separate variables for declared initials, and initials grabbed from local storage
+
+//
+var initialsSet = document.getElementById('initials');
+//
+
+// NEED TO SET INITIALS IN LOCAL STORAGE SOMEWHERE BEFORE GETTING IT
+// localStorage.setItem("initials", initialsSet.value);
 
 var initials = localStorage.getItem("initials");
+console.log(initials);
+
 var initialsArray = initials?JSON.parse(initials):[];
 function setInitials () {
-    
+
+    //
+    var initialsSetValue = initialsSet.value
+    //
+
+    initialsArray.push(initialsSetValue);
+    localStorage.setItem("initials", JSON.stringify(initialsArray));
+    initials = localStorage.getItem("initials");
+    initialsArray = JSON.parse(initials);
+
+    // console.log(initialsArray);
 }
 
 
 
 
-function renderScore () {
-    var wholeSet = {
-        initials1: localStorage.getItem("initials"),
-        score1: localStorage.getItem("userScore"),
-    }
+// function renderScore () {
+//     var wholeSet = {
+//         initials1: localStorage.getItem("initials"),
+//         score1: localStorage.getItem("userScore"),
+//     }
 
-    // Perhaps need a different item's length for the loop, as wholeSet.length is undefined
-    for (var i = 0; i < wholeSet.length; i++) {
-        var olEl = document.getElementById('highScores');
-        var liTag = document.createElement('li');
+//     // Perhaps need a different item's length for the loop, as wholeSet.length is undefined
+//     for (var i = 0; i < wholeSet.length; i++) {
+//         var olEl = document.getElementById('highScores');
+//         var liTag = document.createElement('li');
 
-        // need different code here, as wholeSet[i].initials1 is undefined
-        // however, wholeSet.initials1 will properly log into the console
-        liTag.textContent = wholeSet[i].initials1 + ': ' + wholeSet[i].score1;
+//         // need different code here, as wholeSet[i].initials1 is undefined
+//         // however, wholeSet.initials1 will properly log into the console
+//         liTag.textContent = wholeSet[i].initials1 + ': ' + wholeSet[i].score1;
 
-        olEl.appendChild(liTag);
-    }
+//         olEl.appendChild(liTag);
+//     }
 
-    // console logging wholeSet object works
-    // console.log(wholeSet);
+//     // console logging wholeSet object works
+//     // console.log(wholeSet);
 
-    // wholeSet.length is undefined
-    // console.log(wholeSet.length);
+//     // wholeSet.length is undefined
+//     // console.log(wholeSet.length);
 
-    // wholeSet.values is also undefined
-    // console.log(wholeSet.values);
+//     // wholeSet.values is also undefined
+//     // console.log(wholeSet.values);
 
-    // wholeSet[i].initials1 is undefined
-    // console.log(wholeSet[i].initials1);
+//     // wholeSet[i].initials1 is undefined
+//     // console.log(wholeSet[i].initials1);
 
-    // THIS WORKS
-    // console.log(wholeSet.initials1);
+//     // THIS WORKS
+//     // console.log(wholeSet.initials1);
 
-    // THIS WORKS
-    // console.log(Object.values(wholeSet));
+//     // THIS WORKS
+//     // console.log(Object.values(wholeSet));
 
-    // THIS WORKS - LOGS EACH INDIVIDUAL CHARACTER IN THE INITIALS AS SEPARATE STRING IN AN ARRAY
-    // console.log(Object.values(wholeSet.initials1));
+//     // THIS WORKS - LOGS EACH INDIVIDUAL CHARACTER IN THE INITIALS AS SEPARATE STRING IN AN ARRAY
+//     // console.log(Object.values(wholeSet.initials1));
 
-// AT THIS POINT, PRIORITY NEEDS TO BE FIGURING OUT PROPER WAY TO GET LENGTH FOR THE FOR LOOP
+// // AT THIS POINT, PRIORITY NEEDS TO BE FIGURING OUT PROPER WAY TO GET LENGTH FOR THE FOR LOOP
 
-}
+// }
 
 startButton.addEventListener('click', displayQuiz);
 
@@ -280,6 +296,6 @@ function displayQuestion5 () {
 
 startQuiz ();
 
-// setInitials ();
+setInitials ();
 
-renderScore ();
+// renderScore ();
