@@ -18,3 +18,8 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 
+![Screenshot of Quiz](https://imgur.com/Yea2utn)
+
+Link to GITHUB Pages Deployment: https://ajconnally93.github.io/Module-4-Challenge---Coding-Quiz/
+
+The purpose of this project was to practice using local storage, as well as use my knowledge of JavScript to create a custom quiz with a timer keeping feature, dynamic score keeping feature, a High Scores feature (using local storage), and to use proper scope with many different functions and their respective calls.
