@@ -87,3 +87,7 @@ main > p {
 #submitScore {
     visibility: hidden;
 }
+
+#highScores {
+    font-size: 24px;
+}

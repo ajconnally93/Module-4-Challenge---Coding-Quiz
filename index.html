@@ -14,7 +14,6 @@
 
         <!-- Top Bar section (VHS button, Go Home button, & timer) **ALWAYS STAYS VISIBLE**  -->
         <div id="topcontainer">
-            <a href="https://www.google.com"><button id="viewhiscores">View High Scores</button></a>
             <span id="welcome">Welcome to the JavaScript quiz!</span>
             <span id="currentScore"></span>
             <span id="timer"></span>
@@ -62,13 +61,14 @@
                   <input id="initials" type="text" name="initials"/>
                 </div>
                 <div>
-                  <input type="submit" value="Send"/>
+                  <input id="initialSetter" type="submit" value="Send"/>
                 </div>
                 <span>press Send to submit your high score and go to the home page</span>
             </form>
 
+        <!-- high scores are appended here -->
         <ul id="highScores">
-            
+            HIGH SCORES:
         </ul>
 
 </body>
