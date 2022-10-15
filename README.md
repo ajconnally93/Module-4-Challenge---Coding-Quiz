@@ -18,7 +18,7 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 
-![Screenshot of Quiz](https://imgur.com/Yea2utn)
+![Screenshot of Quiz](https://i.imgur.com/Yea2utn.png)
 
 Link to GITHUB Pages Deployment: https://ajconnally93.github.io/Module-4-Challenge---Coding-Quiz/
 
